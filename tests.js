@@ -1,7 +1,23 @@
 var mocha = require('mocha')
 var calculateScore = require('./scoring').calculateScore
+var calculateRushingScore = require('./scoring').calculateRushingScore
+console.log(calculateRushingScore)
 var expect = require('chai').expect
 var { describe, it } = mocha
+
+describe('Scoring', function () {
+  it('Calculates the rushing score for each player', () => {
+    let player = {
+      postition: 'RB',
+      stats: {
+      rushing: { attempts: 18, yards: 103, touchdowns: 2, fumbles: 0}
+      }
+    }
+    let points= calculateRushingScore (player)
+    expect(points).to.equal(22.3)
+    console.log(points)
+  })
+})
 
 describe('Scoring', function () {
   it('returns the score for a quarterback', function () {

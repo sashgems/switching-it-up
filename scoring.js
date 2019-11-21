@@ -35,22 +35,25 @@ function calculateReturnScore(player) {
   return parseFloat((kickYards + kickTouchdowns + kickFumbles + puntYards + puntTouchdowns + puntFumbles).toFixed(2))
 }
 
-module.exports.calculateScore = function(player) {
+function calculateScore(player) {
   switch (player.position) {
-      case 'QB':
-          return calculatePassingScore(player) + calculateRushingScore(player);
-          break;
-      case 'RB':
-          return calculateRushingScore(player) + calculateReceivingScore(player) + calculateReturnScore(player);
-          break;
-      case 'WR':
-          return calculateRushingScore(player) + calculateReceivingScore(player) + calculateReturnScore(player);
-          break;
-      case 'TE':
-          return calculateReceivingScore(player);
-          break;
-      default:
-          return 0;
-          break;
+    case 'QB':
+      return calculatePassingScore(player) + calculateRushingScore(player);
+      break;
+    case 'RB':
+      return calculateRushingScore(player) + calculateReceivingScore(player) + calculateReturnScore(player);
+      break;
+    case 'WR':
+      return calculateRushingScore(player) + calculateReceivingScore(player) + calculateReturnScore(player);
+      break;
+    case 'TE':
+      return calculateReceivingScore(player);
+      break;
+    default:
+      return 0;
+      break;
   }
 };
+
+module.exports.calculateScore = calculateScore
+module.exports.calculateRushingScore = calculateRushingScore
